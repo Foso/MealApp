@@ -69,7 +69,7 @@ final class ContributorsResource: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     func getContributors() {
-        contributorsProvider.contributors(owner: "michallaskowski", repo: "kuiks")
+        contributorsProvider.contributors(owner: "foso", repo: "Jetpack-Compose-Playground")
         .map { contributors in
             contributors.map {
                 $0.login
