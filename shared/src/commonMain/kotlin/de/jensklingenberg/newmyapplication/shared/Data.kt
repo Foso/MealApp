@@ -1,4 +1,4 @@
-package de.jensklingenberg.newmyapplication.shared.models
+package de.jensklingenberg.newmyapplication.shared
 
 sealed class DataState<out T> {
     data class Success<T>(val data: T) : DataState<T>()

@@ -1,5 +1,6 @@
 package de.jensklingenberg.newmyapplication.shared.ktor
 
+import co.touchlab.stately.ensureNeverFrozen
 import de.jensklingenberg.newmyapplication.shared.response.CocktailResult
 import io.ktor.client.HttpClient
 import io.ktor.client.features.json.JsonFeature
@@ -21,7 +22,7 @@ class CocktailApiImpl()  {
     }
 
     init {
-       // ensureNeverFrozen()
+        ensureNeverFrozen()
     }
 
     suspend fun getJsonFromApi(): CocktailResult {
