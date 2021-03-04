@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import shared
 
 struct Contributor: Codable {
     let login: String
@@ -63,12 +64,18 @@ private class ContributorsProvider: ContributorsProviding {
 // you can treat it as a view model
 final class ContributorsResource: ObservableObject {
     @Published var contributors = "Loading..."
+   
+    var cocktail = CocktailApiImpl()
+    @Published var people = [Drink]()
 
     private let contributorsProvider: ContributorsProviding = ContributorsProvider()
 
     private var cancellables = Set<AnyCancellable>()
+    private let repository: PeopleInSpaceRepository
 
     func getContributors() {
+        
+        
         contributorsProvider.contributors(owner: "foso", repo: "Jetpack-Compose-Playground")
         .map { contributors in
             contributors.map {
@@ -81,17 +88,59 @@ final class ContributorsResource: ObservableObject {
         })
         .store(in: &cancellables)
     }
+    
+    func getDrinks() {
+       
+           contributorsProvider.contributors(owner: "foso", repo: "Jetpack-Compose-Playground")
+           .map { contributors in
+               contributors.map {
+                   $0.login
+           }.joined(separator: ", ")
+           }.replaceError(with: "Error!")
+           .receive(on: RunLoop.main)
+           .sink(receiveValue: { [weak self] in
+               self?.contributors = $0
+           })
+           .store(in: &cancellables)
+       }
+    
+           
+       init(repository: PeopleInSpaceRepository) {
+           self.repository = repository
+           
+       }
+       
+       func startObservingPeopleUpdates() {
+        repository.startObservingPeopleUpdates(success: { data in
+            self.people = data.drinks
+           })
+       }
+       
+       func stopObservingPeopleUpdates() {
+           repository.stopObservingPeopleUpdates()
+       }
+       
 }
 
 struct ContributorsView: View {
 
-    @ObservedObject private var resource = ContributorsResource()
+    @ObservedObject private var peopleInSpaceViewModel = ContributorsResource(repository: PeopleInSpaceRepository())
 
     var body: some View {
-        Text(resource.contributors).accessibility(identifier: "label")
+        VStack {
+
+            
+            List(peopleInSpaceViewModel.people, id: \.strDrink) { person in
+                PersonView(person: person)
+            }
             .onAppear {
-                self.resource.getContributors()
+                self.peopleInSpaceViewModel.startObservingPeopleUpdates()
+            }.onDisappear {
+                self.peopleInSpaceViewModel.stopObservingPeopleUpdates()
+            }
+        
         }
+       
 
     }
 }
@@ -101,3 +150,13 @@ struct ContributorsView_Previews: PreviewProvider {
         ContributorsView()
     }
 }
+
+
+struct PersonView : View {
+    var person: Drink
+    
+    var body: some View {
+        Text(person.strDrink + " (" + person.strDrink + ")")
+    }
+}
+

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		136A7C5A25F031670047FF6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C5925F031670047FF6D /* ViewController.swift */; };
-		136A7C5C25F046AB0047FF6D /* BreedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C5B25F046AB0047FF6D /* BreedCell.swift */; };
 		136A7C5F25F167700047FF6D /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C5D25F167700047FF6D /* ListView.swift */; };
 		136A7C6025F167700047FF6D /* ListViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C5E25F167700047FF6D /* ListViewControler.swift */; };
 		136A7C6225F167770047FF6D /* ContributorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C6125F167770047FF6D /* ContributorsView.swift */; };
@@ -56,8 +54,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		136A7C5925F031670047FF6D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		136A7C5B25F046AB0047FF6D /* BreedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedCell.swift; sourceTree = "<group>"; };
 		136A7C5D25F167700047FF6D /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		136A7C5E25F167700047FF6D /* ListViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewControler.swift; sourceTree = "<group>"; };
 		136A7C6125F167770047FF6D /* ContributorsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContributorsView.swift; sourceTree = "<group>"; };
@@ -132,14 +128,12 @@
 				136A7C5D25F167700047FF6D /* ListView.swift */,
 				136A7C5E25F167700047FF6D /* ListViewControler.swift */,
 				7555FF7E242A565900829871 /* AppDelegate.swift */,
-				136A7C5925F031670047FF6D /* ViewController.swift */,
 				7555FF80242A565900829871 /* SceneDelegate.swift */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF84242A565B00829871 /* Assets.xcassets */,
 				7555FF89242A565B00829871 /* LaunchScreen.storyboard */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				7555FF86242A565B00829871 /* Preview Content */,
-				136A7C5B25F046AB0047FF6D /* BreedCell.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -335,8 +329,6 @@
 				7555FF81242A565900829871 /* SceneDelegate.swift in Sources */,
 				136A7C6225F167770047FF6D /* ContributorsView.swift in Sources */,
 				136A7C5F25F167700047FF6D /* ListView.swift in Sources */,
-				136A7C5A25F031670047FF6D /* ViewController.swift in Sources */,
-				136A7C5C25F046AB0047FF6D /* BreedCell.swift in Sources */,
 				136A7C6025F167700047FF6D /* ListViewControler.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
