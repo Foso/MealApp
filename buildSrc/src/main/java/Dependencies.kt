@@ -3,18 +3,20 @@ object Versions {
     val target_sdk = 30
     val compile_sdk = 30
 
-    val kotlin = "1.4.31"
+    val kotlin = "1.4.30"
     val android_gradle_plugin = "4.0.1"
+    const val compose = "1.0.0-beta01"
 
     val buildToolsVersion = "30.0.2"
     val coroutines = "1.4.2-native-mt"
-    val kermit = "0.1.8"
+    const val koin = "3.0.1-beta-1"
 
     val ktor = "1.5.0"
     val junit = "4.13.1"
     val material = "1.2.1"
     val serialization = "1.0.1"
-
+    const val nav_compose = "1.0.0-alpha08"
+    const val accompanist = "0.6.0"
 
     object AndroidX {
         val appcompat = "1.2.0"
@@ -77,4 +79,22 @@ object Deps {
         val ios = "io.ktor:ktor-client-ios:${Versions.ktor}"
         val commonSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
     }
+}
+
+object Compose {
+    const val ui = "androidx.compose.ui:ui:${Versions.compose}"
+    const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
+    const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
+    const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
+    const val material = "androidx.compose.material:material:${Versions.compose}"
+    const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+    const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
+    const val accompanist= "dev.chrisbanes.accompanist:accompanist-coil:${Versions.accompanist}"
+}
+
+object Koin {
+    val core = "io.insert-koin:koin-core:${Versions.koin}"
+    val test = "io.insert-koin:koin-test:${Versions.koin}"
+    val android = "io.insert-koin:koin-android:${Versions.koin}"
+    val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
 }

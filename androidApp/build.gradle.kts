@@ -22,6 +22,17 @@ dependencies {
     implementation(Deps.AndroidX.lifecycle_viewmodel_extensions)
     implementation(Deps.AndroidX.lifecycle_livedata)
     implementation(Deps.AndroidX.lifecycle_extension)
+
+    implementation(Compose.ui)
+    implementation(Compose.uiGraphics)
+    implementation(Compose.uiTooling)
+    implementation(Compose.foundationLayout)
+    implementation(Compose.material)
+    implementation(Compose.runtimeLiveData)
+    implementation(Compose.navigation)
+    implementation(Compose.accompanist)
+    implementation(Koin.compose)
+
 }
 
 android {
@@ -41,8 +52,12 @@ android {
 
     buildFeatures {
         viewBinding = true
-    }
+        compose = true
 
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose
+    }
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_11)
         targetCompatibility(JavaVersion.VERSION_11)
