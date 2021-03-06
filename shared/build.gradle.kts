@@ -28,10 +28,8 @@ kotlin {
                         strictly(Versions.coroutines)
                     }
                 }
-                implementation(Deps.stately)
-                implementation(Deps.multiplatformSettings)
+
                 implementation(Deps.Ktor.commonSerialization)
-                api(Deps.kermit)
                 implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.30")
             }
         }
