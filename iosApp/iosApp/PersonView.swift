@@ -16,6 +16,13 @@ struct PersonView : View {
     var meal: Meal
     
     var body: some View {
-        Text(meal.strMeal )
+        
+        
+        HStack {
+            ImageView(withURL: meal.strMealThumb, width: 64, height: 64)
+                   VStack(alignment: .leading) {
+                    Text(meal.strMeal )
+                   }
+        }
     }
 }

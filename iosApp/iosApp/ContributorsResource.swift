@@ -28,9 +28,9 @@ final class PeopleInSpaceViewModel: ObservableObject {
         
        }
        
-       func stopObservingPeopleUpdates() {
-       
-
-       }
+    
+        func getPersonImage(personName: String) -> String {
+            return repository.getIngredientImageUrl(name: personName)
+        }
        
 }

@@ -21,12 +21,12 @@ struct ContentView: View {
 
 
     var body: some View {
-        TabView {
+        
             PeopleListView(viewModel: peopleInSpaceViewModel)
                 .tabItem {
                     Label("People", systemImage: "person")
                 }
-        }
+        
     }
 }
 
@@ -34,40 +34,50 @@ struct PeopleListView: View {
     
     @ObservedObject var viewModel : PeopleInSpaceViewModel
 
-
     var body: some View {
         NavigationView {
                    VStack {
                        
                        List(viewModel.drinks, id: \.strMeal) { person in
-                           NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
+                           NavigationLink(destination: MealDetailsView(viewModel: viewModel, meal: person)) {
                                PersonView(viewModel: viewModel, meal: person)
                            }
                        }
                        .navigationBarTitle(Text("Meal Catalog"))
                        .onAppear {
                            viewModel.startObservingPeopleUpdates()
-                       }.onDisappear {
-                           viewModel.stopObservingPeopleUpdates()
                        }
                    }
                }
     }
 }
 
-struct PersonDetailsView: View {
+struct MealDetailsView: View {
     var viewModel: PeopleInSpaceViewModel
-    var person: Meal
+    var meal: Meal
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .center, spacing: 32) {
-                Text(person.strMeal).font(.title)
+            VStack() {
+                Text(meal.strMeal).font(.title)
+                ImageView(withURL: meal.strMealThumb, width: 240, height: 240)
+
                 
-               // Text(viewModel.getPersonBio(personName: person.name)).font(.body)
+                Text("Ingredients")
+                HStack{
+                    
+                    ForEach(meal.getIngredients(), id: \.self) { ingredientName in
+                        ImageView(withURL: viewModel.getPersonImage(personName: ingredientName), width: 50, height: 50)
+                    }
+                }
+                
+                Text("Category: "+meal.strCategory)
+
+                Text(meal.strInstructions ?? "").fixedSize().lineLimit(nil)
+                   
                 Spacer()
             }
-            .padding()
+            
         }
     }
 }
