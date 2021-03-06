@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
-import de.jensklingenberg.newmyapplication.shared.response.Drink
+import de.jensklingenberg.newmyapplication.shared.models.Drink
 import de.jensklingenberg.newmyapplication.androidApp.databinding.ItemBreedBinding
 
 class MainAdapter() : ListAdapter<Drink, MainViewHolder>(drinkCallback) {

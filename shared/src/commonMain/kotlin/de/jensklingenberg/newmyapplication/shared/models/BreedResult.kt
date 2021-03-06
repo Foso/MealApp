@@ -1,4 +1,4 @@
-package de.jensklingenberg.newmyapplication.shared.response
+package de.jensklingenberg.newmyapplication.shared.models
 
 import kotlinx.serialization.Serializable
 

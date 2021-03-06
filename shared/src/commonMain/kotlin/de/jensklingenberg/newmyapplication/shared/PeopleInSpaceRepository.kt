@@ -1,7 +1,7 @@
 package de.jensklingenberg.newmyapplication.shared
 
 import de.jensklingenberg.newmyapplication.shared.ktor.CocktailApiImpl
-import de.jensklingenberg.newmyapplication.shared.response.CocktailResult
+import de.jensklingenberg.newmyapplication.shared.models.CocktailResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope

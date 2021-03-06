@@ -1,11 +1,10 @@
 package de.jensklingenberg.newmyapplication.shared.ktor
 
-import co.touchlab.stately.ensureNeverFrozen
-import de.jensklingenberg.newmyapplication.shared.response.CocktailResult
-import io.ktor.client.HttpClient
+import de.jensklingenberg.newmyapplication.shared.models.CocktailResult
+import io.ktor.client.*
 import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.request.get
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.request.*
 import kotlinx.serialization.json.Json
 
 class CocktailApiImpl{
@@ -18,10 +17,6 @@ class CocktailApiImpl{
             }
             )
         }
-    }
-
-    init {
-        ensureNeverFrozen()
     }
 
     suspend fun getCocktailByName(name:String): CocktailResult {

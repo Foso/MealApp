@@ -6,14 +6,41 @@ plugins {
     id("com.android.library")
 }
 
+android {
+    compileSdkVersion(30)
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdkVersion(24)
+        targetSdkVersion(30)
+    }
+    
+
+
+}
+// workaround for https://youtrack.jetbrains.com/issue/KT-43944
+android {
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
+    }
+}
 kotlin {
-    android()
+    android(){
+
+    }
     ios {
         binaries {
             framework {
                 baseName = "shared"
             }
         }
+        val main by compilations.getting
+
+
     }
     sourceSets {
         val commonMain by getting{
@@ -61,14 +88,7 @@ kotlin {
     }
 }
 
-android {
-    compileSdkVersion(29)
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(29)
-    }
-}
+
 
 val packForXcode by tasks.creating(Sync::class) {
     group = "build"

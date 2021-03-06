@@ -1,5 +1,6 @@
 package de.jensklingenberg.newmyapplication.shared
 
+import de.jensklingenberg.newmyapplication.shared.models.Greeting
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

@@ -2,7 +2,7 @@ package de.jensklingenberg.newmyapplication.androidApp
 
 import androidx.lifecycle.ViewModel
 import de.jensklingenberg.newmyapplication.shared.ktor.CocktailApiImpl
-import de.jensklingenberg.newmyapplication.shared.response.CocktailResult
+import de.jensklingenberg.newmyapplication.shared.models.CocktailResult
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
