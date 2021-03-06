@@ -18,14 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView(didMakeAction: { [weak self] action in
-            switch action {
-            case .goToList:
-                self?.presentList()
-            case .goToNetwork:
-                self?.presentNetworkScreen()
-            }
-        })
+        let contentView = ContentView()
         let contentViewController = UIHostingController(rootView: contentView)
 
         // Use a UIHostingController as window root view controller.
@@ -53,9 +46,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
 
-    private func presentNetworkScreen() {
-        let contributorsView = ContributorsView()
-        let viewController = UIHostingController(rootView: contributorsView)
-        self.window?.rootViewController?.present(viewController, animated: true, completion: nil)
-    }
+    
 }

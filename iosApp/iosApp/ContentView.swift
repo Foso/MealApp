@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import shared
 
 enum ContentViewAction {
     case goToList
@@ -16,25 +17,61 @@ enum ContentViewAction {
 // navigation works once on simulators till xcode11.4
 // https://stackoverflow.com/questions/59279176/navigationlink-works-only-for-once
 struct ContentView: View {
-    var didMakeAction: ((ContentViewAction) -> Void)?
+    
+    @StateObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository:PeopleInSpaceRepository())
+
 
     var body: some View {
-        VStack {
-            Button(action: {
-                self.didMakeAction?(.goToList)
-            }, label: { Text("Go to list") })
-                .accessibility(identifier: "show_list")
-
-            Spacer(minLength: 40).fixedSize()
-
-            Button(action: {
-                self.didMakeAction?(.goToNetwork)
-            }, label: { Text("Go to GitHub contributors") })
-                .accessibility(identifier: "contributors")
+        TabView {
+            PeopleListView(viewModel: peopleInSpaceViewModel)
+                .tabItem {
+                    Label("People", systemImage: "person")
+                }
         }
     }
 }
 
+struct PeopleListView: View {
+    
+    @ObservedObject var viewModel : PeopleInSpaceViewModel
+
+
+    var body: some View {
+        NavigationView {
+                   VStack {
+                       
+                       List(viewModel.drinks, id: \.strDrink) { person in
+                           NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
+                               PersonView(viewModel: viewModel, person: person)
+                           }
+                       }
+                       .navigationBarTitle(Text("People In Space"))
+                       .onAppear {
+                           viewModel.startObservingPeopleUpdates()
+                       }.onDisappear {
+                           viewModel.stopObservingPeopleUpdates()
+                       }
+                   }
+               }
+    }
+}
+
+struct PersonDetailsView: View {
+    var viewModel: PeopleInSpaceViewModel
+    var person: Drink
+    
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .center, spacing: 32) {
+                Text(person.strDrink).font(.title)
+                
+               // Text(viewModel.getPersonBio(personName: person.name)).font(.body)
+                Spacer()
+            }
+            .padding()
+        }
+    }
+}
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

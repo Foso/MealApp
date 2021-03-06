@@ -14,14 +14,14 @@ class CocktailViewModel : ViewModel() {
 
     fun getDrinks() {
         GlobalScope.launch {
-            val teest = cocktailApi.getJsonFromApi()
+            val teest = cocktailApi.getCocktails()
             teest
         }
     }
 
     fun flowgetDrinks(): Flow<CocktailResult> {
         return flow {
-            emit( cocktailApi.getJsonFromApi())
+            emit( cocktailApi.getCocktails())
         }
     }
 }

@@ -16,8 +16,6 @@ dependencies {
     implementation(Deps.AndroidX.core_ktx)
     implementation(Deps.Ktor.androidCore)
     implementation(Deps.AndroidX.constraintlayout)
-    implementation(Deps.SqlDelight.runtimeJdk)
-    implementation(Deps.SqlDelight.driverAndroid)
     implementation(Deps.Coroutines.common)
     implementation(Deps.Coroutines.android)
     implementation(Deps.multiplatformSettings)

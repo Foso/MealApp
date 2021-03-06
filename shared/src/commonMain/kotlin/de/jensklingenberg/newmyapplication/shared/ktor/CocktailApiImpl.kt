@@ -8,8 +8,7 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
 
-class CocktailApiImpl()  {
-
+class CocktailApiImpl{
 
     private val client = HttpClient {
         install(JsonFeature) {
@@ -25,9 +24,15 @@ class CocktailApiImpl()  {
         ensureNeverFrozen()
     }
 
-    suspend fun getJsonFromApi(): CocktailResult {
-        return client.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=")
+    suspend fun getCocktailByName(name:String): CocktailResult {
+        return client.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=$name")
     }
 
+    suspend fun getCocktailById(id:Int): CocktailResult {
+        return client.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=$id")
+    }
 
+    suspend fun getCocktails(): CocktailResult {
+        return client.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=")
+    }
 }

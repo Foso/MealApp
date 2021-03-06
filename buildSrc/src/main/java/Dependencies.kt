@@ -3,7 +3,7 @@ object Versions {
     val target_sdk = 30
     val compile_sdk = 30
 
-    val kotlin = "1.4.21"
+    val kotlin = "1.4.31"
     val android_gradle_plugin = "4.0.1"
 
     val buildToolsVersion = "30.0.2"
@@ -89,14 +89,6 @@ object Deps {
         val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
 
-    object SqlDelight {
-        val gradle = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
-        val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-        val coroutinesExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
-        val runtimeJdk = "com.squareup.sqldelight:runtime-jvm:${Versions.sqlDelight}"
-        val driverIos = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
-        val driverAndroid = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-    }
 
     object Ktor {
         val commonCore = "io.ktor:ktor-client-core:${Versions.ktor}"

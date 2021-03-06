@@ -20,8 +20,6 @@ kotlin {
     sourceSets {
         val commonMain by getting{
             dependencies {
-                implementation(Deps.SqlDelight.runtime)
-                implementation(Deps.SqlDelight.coroutinesExtensions)
                 implementation(Deps.Ktor.commonCore)
                 implementation(Deps.Ktor.commonJson)
                 implementation(Deps.Ktor.commonLogging)
@@ -47,7 +45,6 @@ kotlin {
             dependencies {
                 implementation("com.google.android.material:material:1.2.1")
                 implementation(kotlin("stdlib", Versions.kotlin))
-                implementation(Deps.SqlDelight.driverAndroid)
                 implementation(Deps.Coroutines.android)
                 implementation(Deps.Ktor.androidCore)
             }
@@ -60,7 +57,6 @@ kotlin {
         }
         val iosMain by getting{
             dependencies {
-                implementation(Deps.SqlDelight.driverIos)
                 implementation(Deps.Ktor.ios)
             }
 

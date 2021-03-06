@@ -18,24 +18,11 @@ class PeopleInSpaceRepository()  {
     var peopleJob: Job? = null
 
 
-    init {
-        coroutineScope.launch {
-
-        }
-    }
-
-    fun fetchPeopleAsFlow(): Flow<CocktailResult> {
-        // the main reason we need to do this check is that sqldelight isn't currently
-        // setup for javascript client
-        return flow { emit(peopleInSpaceApi.getJsonFromApi()) }
-    }
-
-
     // called from Kotlin/Native clients
     fun startObservingPeopleUpdates(success: (CocktailResult) -> Unit) {
 
         peopleJob = coroutineScope.launch {
-            fetchPeopleAsFlow().collect {
+            flow { emit(peopleInSpaceApi.getCocktails()) }.collect {
                 success(it)
             }
         }
@@ -43,11 +30,6 @@ class PeopleInSpaceRepository()  {
 
     fun stopObservingPeopleUpdates() {
         peopleJob?.cancel()
-    }
-
-
-    companion object {
-        private const val POLL_INTERVAL = 10000L
     }
 }
 

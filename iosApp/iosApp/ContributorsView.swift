@@ -20,7 +20,7 @@ protocol ContributorsProviding {
     func contributors(owner: String, repo: String) -> AnyPublisher<[Contributor], Error>
 }
 
-private class ContributorsProvider: ContributorsProviding {
+class ContributorsProvider: ContributorsProviding {
 
     private let baseUrl = URL(string: UserDefaults.standard.string(forKey: "contributors_url") ?? "http://api.github.com")!
 
@@ -61,102 +61,4 @@ private class ContributorsProvider: ContributorsProviding {
     }
 }
 
-// you can treat it as a view model
-final class ContributorsResource: ObservableObject {
-    @Published var contributors = "Loading..."
-   
-    var cocktail = CocktailApiImpl()
-    @Published var people = [Drink]()
-
-    private let contributorsProvider: ContributorsProviding = ContributorsProvider()
-
-    private var cancellables = Set<AnyCancellable>()
-    private let repository: PeopleInSpaceRepository
-
-    func getContributors() {
-        
-        
-        contributorsProvider.contributors(owner: "foso", repo: "Jetpack-Compose-Playground")
-        .map { contributors in
-            contributors.map {
-                $0.login
-        }.joined(separator: ", ")
-        }.replaceError(with: "Error!")
-        .receive(on: RunLoop.main)
-        .sink(receiveValue: { [weak self] in
-            self?.contributors = $0
-        })
-        .store(in: &cancellables)
-    }
-    
-    func getDrinks() {
-       
-           contributorsProvider.contributors(owner: "foso", repo: "Jetpack-Compose-Playground")
-           .map { contributors in
-               contributors.map {
-                   $0.login
-           }.joined(separator: ", ")
-           }.replaceError(with: "Error!")
-           .receive(on: RunLoop.main)
-           .sink(receiveValue: { [weak self] in
-               self?.contributors = $0
-           })
-           .store(in: &cancellables)
-       }
-    
-           
-       init(repository: PeopleInSpaceRepository) {
-           self.repository = repository
-           
-       }
-       
-       func startObservingPeopleUpdates() {
-        repository.startObservingPeopleUpdates(success: { data in
-            self.people = data.drinks
-           })
-       }
-       
-       func stopObservingPeopleUpdates() {
-           repository.stopObservingPeopleUpdates()
-       }
-       
-}
-
-struct ContributorsView: View {
-
-    @ObservedObject private var peopleInSpaceViewModel = ContributorsResource(repository: PeopleInSpaceRepository())
-
-    var body: some View {
-        VStack {
-
-            
-            List(peopleInSpaceViewModel.people, id: \.strDrink) { person in
-                PersonView(person: person)
-            }
-            .onAppear {
-                self.peopleInSpaceViewModel.startObservingPeopleUpdates()
-            }.onDisappear {
-                self.peopleInSpaceViewModel.stopObservingPeopleUpdates()
-            }
-        
-        }
-       
-
-    }
-}
-
-struct ContributorsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContributorsView()
-    }
-}
-
-
-struct PersonView : View {
-    var person: Drink
-    
-    var body: some View {
-        Text(person.strDrink + " (" + person.strDrink + ")")
-    }
-}
 
