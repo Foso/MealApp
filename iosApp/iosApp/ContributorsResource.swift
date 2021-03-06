@@ -10,26 +10,27 @@ import Foundation
 import SwiftUI
 import Combine
 import shared
-// you can treat it as a view model
+
 final class PeopleInSpaceViewModel: ObservableObject {
    
-    var cocktail = CocktailApiImpl()
-    @Published var drinks = [Drink]()
+    @Published var drinks = [Meal]()
 
-    private let repository: PeopleInSpaceRepository
+    private let repository: MealDataSource
 
-       init(repository: PeopleInSpaceRepository) {
+       init(repository: MealDataSource) {
            self.repository = repository
        }
        
        func startObservingPeopleUpdates() {
-        repository.startObservingPeopleUpdates(success: { data in
-            self.drinks = data.drinks
-           })
+        repository.getMeals { cocktailResult,_ in
+            self.drinks = cocktailResult!.meals
+        }
+        
        }
        
        func stopObservingPeopleUpdates() {
-           repository.stopObservingPeopleUpdates()
+       
+
        }
        
 }

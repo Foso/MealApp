@@ -14,11 +14,10 @@ enum ContentViewAction {
     case goToNetwork
 }
 
-// navigation works once on simulators till xcode11.4
-// https://stackoverflow.com/questions/59279176/navigationlink-works-only-for-once
+
 struct ContentView: View {
     
-    @StateObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository:PeopleInSpaceRepository())
+    @StateObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository:MealRepository())
 
 
     var body: some View {
@@ -40,12 +39,12 @@ struct PeopleListView: View {
         NavigationView {
                    VStack {
                        
-                       List(viewModel.drinks, id: \.strDrink) { person in
+                       List(viewModel.drinks, id: \.strMeal) { person in
                            NavigationLink(destination: PersonDetailsView(viewModel: viewModel, person: person)) {
-                               PersonView(viewModel: viewModel, person: person)
+                               PersonView(viewModel: viewModel, meal: person)
                            }
                        }
-                       .navigationBarTitle(Text("People In Space"))
+                       .navigationBarTitle(Text("Meal Catalog"))
                        .onAppear {
                            viewModel.startObservingPeopleUpdates()
                        }.onDisappear {
@@ -58,12 +57,12 @@ struct PeopleListView: View {
 
 struct PersonDetailsView: View {
     var viewModel: PeopleInSpaceViewModel
-    var person: Drink
+    var person: Meal
     
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 32) {
-                Text(person.strDrink).font(.title)
+                Text(person.strMeal).font(.title)
                 
                // Text(viewModel.getPersonBio(personName: person.name)).font(.body)
                 Spacer()

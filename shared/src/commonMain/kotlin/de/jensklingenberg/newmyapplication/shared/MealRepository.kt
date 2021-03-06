@@ -1,12 +1,9 @@
 package de.jensklingenberg.newmyapplication.shared
 
-import de.jensklingenberg.newmyapplication.shared.ktor.CocktailApiImpl
-import de.jensklingenberg.newmyapplication.shared.models.CocktailResult
+import de.jensklingenberg.newmyapplication.shared.ktor.MealApiImpl
+import de.jensklingenberg.newmyapplication.shared.models.MealResult
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 val personImages = mapOf(
     "Chris Cassidy" to "https://www.nasa.gov/sites/default/files/styles/side_image/public/thumbnails/image/9368855148_f79942efb7_o.jpg?itok=-w5yoryN",
@@ -21,32 +18,21 @@ val personImages = mapOf(
     "Soichi Noguchi" to "https://pbs.twimg.com/media/Em5EbSoVcAA3R2F?format=jpg&name=medium"
 )
 
-class PeopleInSpaceRepository()  {
-    private val peopleInSpaceApi: CocktailApiImpl = CocktailApiImpl()
+interface MealDataSource {
+    suspend fun getMeals(): MealResult
+    fun getIngredientImageUrl(name: String): String
+}
 
+class MealRepository : MealDataSource {
 
-    private val coroutineScope: CoroutineScope = MainScope()
+    private val mealApi: MealApiImpl = MealApiImpl()
 
-    var peopleJob: Job? = null
-
-
-    // called from Kotlin/Native clients
-    fun startObservingPeopleUpdates(success: (CocktailResult) -> Unit) {
-
-        peopleJob = coroutineScope.launch {
-            flow { emit(peopleInSpaceApi.getCocktails()) }.collect {
-                success(it)
-            }
-        }
+    override suspend fun getMeals(): MealResult = mealApi.getMeals()
+    override fun getIngredientImageUrl(name: String): String {
+        return "https://www.themealdb.com/images/ingredients/$name.png"
     }
 
-    fun stopObservingPeopleUpdates() {
-        peopleJob?.cancel()
-    }
 
-    fun getPersonImage(personName: String): String {
-        return personImages[personName] ?: ""
-    }
 }
 
 

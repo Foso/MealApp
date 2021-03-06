@@ -16,6 +16,45 @@ data class Drink(
 
 )
 
+fun Meal.getIngredients():List<String>{
+    val ingredientsList = mutableListOf<String>()
+
+    strIngredient1?.let {
+        ingredientsList.add(it)
+    }
+
+    strIngredient2?.let {
+        ingredientsList.add(it)
+    }
+
+    strIngredient3?.let {
+        ingredientsList.add(it)
+    }
+
+    strIngredient4?.let {
+        ingredientsList.add(it)
+    }
+
+    strIngredient5?.let {
+        ingredientsList.add(it)
+    }
+    strIngredient6?.let {
+        ingredientsList.add(it)
+    }
+    strIngredient7?.let {
+        ingredientsList.add(it)
+    }
+
+    strIngredient8?.let {
+        ingredientsList.add(it)
+    }
+
+    strIngredient9?.let {
+        ingredientsList.add(it)
+    }
+
+    return ingredientsList
+}
 
 @Serializable
 data class Meal(

@@ -13,9 +13,9 @@ import shared
 struct PersonView : View {
     var viewModel: PeopleInSpaceViewModel
 
-    var person: Drink
+    var meal: Meal
     
     var body: some View {
-        Text(person.strDrink )
+        Text(meal.strMeal )
     }
 }

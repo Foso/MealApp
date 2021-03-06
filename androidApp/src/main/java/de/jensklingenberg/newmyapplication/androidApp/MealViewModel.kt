@@ -2,23 +2,23 @@ package de.jensklingenberg.newmyapplication.androidApp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import de.jensklingenberg.newmyapplication.shared.PeopleInSpaceRepository
-import de.jensklingenberg.newmyapplication.shared.ktor.MealApiImpl
+import de.jensklingenberg.newmyapplication.shared.MealDataSource
 import de.jensklingenberg.newmyapplication.shared.models.Meal
-import de.jensklingenberg.newmyapplication.shared.models.MealResult
 import kotlinx.coroutines.flow.*
 
-class MealViewModel(val peopleInSpaceRepository: PeopleInSpaceRepository) : ViewModel() {
-    private val cocktailApi = MealApiImpl()
+class MealViewModel(private val mealDataSource: MealDataSource) : ViewModel() {
 
-    val peopleInSpace: StateFlow<List<Meal>> = flowgetMeals2()
+    val peopleInSpace: StateFlow<List<Meal>> = getMeals()
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
-    fun flowgetMeals2(): Flow<List<Meal>> = flow {
-        emit( cocktailApi.getCocktails().meals)
+    private fun getMeals(): Flow<List<Meal>> = flow {
+        emit(mealDataSource.getMeals().meals)
     }
 
-    fun getMealImage(personName: String): String = getMeal(personName )?.strMealThumb ?: ""
+    fun getMealImage(personName: String): String = getMeal(personName)?.strMealThumb ?: ""
 
-    fun getMeal(personName: String): Meal? = peopleInSpace.value.find { it.strMeal == personName}
+    fun getMeal(personName: String): Meal? = peopleInSpace.value.find { it.strMeal == personName }
+
+    fun getIngredientImage(personName: String): String = mealDataSource.getIngredientImageUrl(personName)
+
 }

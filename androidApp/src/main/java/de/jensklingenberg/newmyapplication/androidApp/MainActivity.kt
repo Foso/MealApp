@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -21,12 +22,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
-import de.jensklingenberg.newmyapplication.shared.PeopleInSpaceRepository
+import de.jensklingenberg.newmyapplication.shared.MealRepository
 import de.jensklingenberg.newmyapplication.shared.models.Meal
+import de.jensklingenberg.newmyapplication.shared.models.getIngredients
 import dev.chrisbanes.accompanist.coil.CoilImage
 
-//val peopleInSpaceViewModel = CocktailViewModel(PeopleInSpaceRepository())
-val peopleInSpaceViewModel = MealViewModel(PeopleInSpaceRepository())
+val mealViewModel = MealViewModel(MealRepository())
 
 class MainActivity : ComponentActivity() {
 
@@ -60,7 +61,7 @@ fun MainLayout() {
                 )
             }
             composable(Screen.PersonDetailsDetails.title + "/{person}") { backStackEntry ->
-                PersonDetailsView(
+                MealDetailsView(
                     backStackEntry.arguments?.get("person") as String,
                     popBack = { navController.popBackStack() })
             }
@@ -70,8 +71,8 @@ fun MainLayout() {
 
 
 @Composable
-fun PersonList(personSelected : (person : Meal) -> Unit) {
-    val peopleState = peopleInSpaceViewModel.peopleInSpace.collectAsState()
+fun PersonList(personSelected: (person: Meal) -> Unit) {
+    val peopleState = mealViewModel.peopleInSpace.collectAsState()
 
     Scaffold(
         topBar = {
@@ -80,8 +81,8 @@ fun PersonList(personSelected : (person : Meal) -> Unit) {
         Column {
             Divider(thickness = 2.dp)
             LazyColumn {
-                items(peopleState.value){ person ->
-                    val personImageUrl = peopleInSpaceViewModel.getMealImage(person.strMeal)
+                items(peopleState.value) { person ->
+                    val personImageUrl = mealViewModel.getMealImage(person.strMeal)
                     PersonView(personImageUrl, person, personSelected)
                 }
             }
@@ -91,14 +92,20 @@ fun PersonList(personSelected : (person : Meal) -> Unit) {
 
 
 @Composable
-fun PersonView(personImageUrl: String, person: Meal, personSelected : (person : Meal) -> Unit) {
+fun PersonView(personImageUrl: String, person: Meal, personSelected: (person: Meal) -> Unit) {
     Row(
-        modifier =  Modifier.fillMaxWidth().clickable(onClick = { personSelected(person) })
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = { personSelected(person) })
             .padding(16.dp), verticalAlignment = Alignment.CenterVertically
     ) {
 
         if (personImageUrl.isNotEmpty()) {
-             CoilImage(data = personImageUrl, modifier = Modifier.size(60.dp), contentDescription = person.strMeal)
+            CoilImage(
+                data = personImageUrl,
+                modifier = Modifier.size(60.dp),
+                contentDescription = person.strMeal
+            )
         } else {
             Spacer(modifier = Modifier.size(60.dp))
         }
@@ -107,13 +114,12 @@ fun PersonView(personImageUrl: String, person: Meal, personSelected : (person : 
 
         Column {
             Text(text = person.strMeal, style = TextStyle(fontSize = 20.sp))
-            //Text(text = person.craft, style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
         }
     }
 }
 
 @Composable
-fun PersonDetailsView(personName: String, popBack: () -> Unit) {
+fun MealDetailsView(personName: String, popBack: () -> Unit) {
 
     Scaffold(
         topBar = {
@@ -126,21 +132,45 @@ fun PersonDetailsView(personName: String, popBack: () -> Unit) {
                 }
             )
         }) {
-        Column(modifier = Modifier.padding(16.dp).fillMaxWidth(),
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            val person = peopleInSpaceViewModel.getMeal(personName)
-            person?.let {
-                Text(person.strMeal, style = MaterialTheme.typography.h4)
+            val meal = mealViewModel.getMeal(personName)
+            meal?.let {
+                Text(meal.strMeal, style = MaterialTheme.typography.h4)
                 Spacer(modifier = Modifier.size(12.dp))
 
-                val imageUrl = peopleInSpaceViewModel.getMealImage(person.strMeal)
+                val imageUrl = mealViewModel.getMealImage(meal.strMeal)
                 if (imageUrl.isNotEmpty()) {
-                    CoilImage(data = imageUrl, modifier = Modifier.size(240.dp), contentDescription = person.strMeal)
+                    CoilImage(
+                        data = imageUrl,
+                        modifier = Modifier.size(240.dp),
+                        contentDescription = meal.strMeal
+                    )
                 }
 
-                Text("Category: "+person.strCategory, style = MaterialTheme.typography.h4)
-                Text("Instructions: "+person.strInstructions)
+                if (it.getIngredients().isNotEmpty()) {
+                    Text("Ingredients:")
+                }
+
+                LazyRow {
+
+                    items(it.getIngredients()) { ingredient ->
+                        CoilImage(
+                            data = mealViewModel.getIngredientImage(ingredient),
+                            modifier = Modifier.size(50.dp),
+                            contentDescription = meal.strMeal
+                        )
+
+                    }
+                }
+
+
+                Text("Category: " + meal.strCategory, style = MaterialTheme.typography.h4)
+                Text("Instructions: " + meal.strInstructions)
 
                 Spacer(modifier = Modifier.size(24.dp))
 
