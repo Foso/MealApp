@@ -13,7 +13,7 @@ This is an example project that is using a shared Kotlin Multiplatform project b
 
 ## iOS
 
-The iOS project compiles Kotlin module to a framework (see [iosApp](iosApp/)). 
+The iOS project compiles a Kotlin module to a framework (see [iosApp](iosApp/)). 
 
 The iOS application is written with SwiftUI. It uses Kotlin module as a library.
 Kotlin module is built into Objective-C framework by invoking Gradle
