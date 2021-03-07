@@ -42,7 +42,7 @@ Have tested it on XCode v12.
 
 This project is licensed under Apache License, Version 2.0
 
-    Copyright 2019 Jens Klingenberg
+    Copyright 2021 Jens Klingenberg
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
