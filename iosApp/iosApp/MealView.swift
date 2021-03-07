@@ -10,8 +10,8 @@ import Foundation
 import SwiftUI
 import shared
 
-struct PersonView : View {
-    var viewModel: PeopleInSpaceViewModel
+struct MealView : View {
+    var viewModel: MealViewModel
 
     var meal: Meal
     

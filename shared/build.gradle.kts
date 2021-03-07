@@ -36,9 +36,17 @@ kotlin {
         binaries {
             framework {
                 baseName = "shared"
+
+
             }
         }
         val main by compilations.getting
+       val interop= main.cinterops{
+            this.create("xctest2"){
+               // this.defFile =  File("/Users/jklingenberg/Code/2021/NewCoktailapp/shared/src/iosMain/xctest_iOSX64.def")
+            }
+        }
+
 
 
     }

@@ -1,5 +1,6 @@
 package de.jensklingenberg.newmyapplication.shared.ktor
 
+import de.jensklingenberg.newmyapplication.shared.models.CategoryResult
 import de.jensklingenberg.newmyapplication.shared.models.MealResult
 import io.ktor.client.*
 import io.ktor.client.features.json.JsonFeature
@@ -21,19 +22,21 @@ class MealApiImpl{
         }
     }
 
-    suspend fun getCocktailByName(name:String): MealResult {
-        return client.get("$baseUrl/search.php?s=$name")
-    }
-
-    suspend fun getCocktailById(id:Int): MealResult {
-        return client.get("$baseUrl/search.php?s=$id")
-    }
-
     suspend fun getMeals(): MealResult {
         return client.get("$baseUrl/search.php?s=")
     }
 
+    suspend fun getMealsByCategory(categoryName:String): MealResult {
+        return client.get("$baseUrl/filter.php?c=$categoryName")
+    }
 
+    suspend fun getCategories(): CategoryResult {
+        return client.get("$baseUrl/categories.php")
+    }
+
+    suspend fun getMealsByName(categoryName:String): MealResult {
+        return client.get("$baseUrl/search.php?s=$categoryName")
+    }
 
     //https://www.themealdb.com/images/ingredients/penne%20rigate.png
 }

@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		130A52A025F439BB00637518 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130A529F25F439BB00637518 /* ImageView.swift */; };
-		136A7C5F25F167700047FF6D /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C5D25F167700047FF6D /* ListView.swift */; };
-		136A7C6425F192240047FF6D /* ContributorsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C6325F192240047FF6D /* ContributorsResource.swift */; };
-		136A7C6625F192FC0047FF6D /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C6525F192FC0047FF6D /* PersonView.swift */; };
+		136A7C6425F192240047FF6D /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C6325F192240047FF6D /* MealViewModel.swift */; };
+		136A7C6625F192FC0047FF6D /* MealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136A7C6525F192FC0047FF6D /* MealView.swift */; };
+		1384973625F4FC9500452BA3 /* CheckboxField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1384973525F4FC9500452BA3 /* CheckboxField.swift */; };
 		7555FF7F242A565900829871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF7E242A565900829871 /* AppDelegate.swift */; };
 		7555FF81242A565900829871 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF80242A565900829871 /* SceneDelegate.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
@@ -56,9 +56,9 @@
 
 /* Begin PBXFileReference section */
 		130A529F25F439BB00637518 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
-		136A7C5D25F167700047FF6D /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		136A7C6325F192240047FF6D /* ContributorsResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorsResource.swift; sourceTree = "<group>"; };
-		136A7C6525F192FC0047FF6D /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
+		136A7C6325F192240047FF6D /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
+		136A7C6525F192FC0047FF6D /* MealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealView.swift; sourceTree = "<group>"; };
+		1384973525F4FC9500452BA3 /* CheckboxField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxField.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7E242A565900829871 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7555FF80242A565900829871 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +126,6 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				136A7C5D25F167700047FF6D /* ListView.swift */,
 				7555FF7E242A565900829871 /* AppDelegate.swift */,
 				7555FF80242A565900829871 /* SceneDelegate.swift */,
 				7555FF82242A565900829871 /* ContentView.swift */,
@@ -134,9 +133,10 @@
 				7555FF89242A565B00829871 /* LaunchScreen.storyboard */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				7555FF86242A565B00829871 /* Preview Content */,
-				136A7C6325F192240047FF6D /* ContributorsResource.swift */,
-				136A7C6525F192FC0047FF6D /* PersonView.swift */,
+				136A7C6325F192240047FF6D /* MealViewModel.swift */,
+				136A7C6525F192FC0047FF6D /* MealView.swift */,
 				130A529F25F439BB00637518 /* ImageView.swift */,
+				1384973525F4FC9500452BA3 /* CheckboxField.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -329,10 +329,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7555FF7F242A565900829871 /* AppDelegate.swift in Sources */,
-				136A7C6425F192240047FF6D /* ContributorsResource.swift in Sources */,
+				1384973625F4FC9500452BA3 /* CheckboxField.swift in Sources */,
+				136A7C6425F192240047FF6D /* MealViewModel.swift in Sources */,
 				7555FF81242A565900829871 /* SceneDelegate.swift in Sources */,
-				136A7C5F25F167700047FF6D /* ListView.swift in Sources */,
-				136A7C6625F192FC0047FF6D /* PersonView.swift in Sources */,
+				136A7C6625F192FC0047FF6D /* MealView.swift in Sources */,
 				130A52A025F439BB00637518 /* ImageView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);

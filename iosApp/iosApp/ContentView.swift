@@ -17,33 +17,56 @@ enum ContentViewAction {
 
 struct ContentView: View {
     
-    @StateObject var peopleInSpaceViewModel = PeopleInSpaceViewModel(repository:MealRepository())
+    @StateObject var peopleInSpaceViewModel = MealViewModel(repository:MealRepository())
 
 
     var body: some View {
         
-            PeopleListView(viewModel: peopleInSpaceViewModel)
-                .tabItem {
-                    Label("People", systemImage: "person")
-                }
+            MealListView(viewModel: peopleInSpaceViewModel)
+                
         
     }
 }
 
-struct PeopleListView: View {
+struct MealListView: View {
     
-    @ObservedObject var viewModel : PeopleInSpaceViewModel
-
+    @ObservedObject var viewModel : MealViewModel
+    @State private var fullText: String = "Search"
     var body: some View {
         NavigationView {
+            
                    VStack {
-                       
-                       List(viewModel.drinks, id: \.strMeal) { person in
-                           NavigationLink(destination: MealDetailsView(viewModel: viewModel, meal: person)) {
-                               PersonView(viewModel: viewModel, meal: person)
-                           }
-                       }
-                       .navigationBarTitle(Text("Meal Catalog"))
+                    ScrollView(.horizontal, showsIndicators: false){
+                        HStack{
+                            ForEach(viewModel.categories, id: \.strCategoryThumb) { ingredientName in
+                                ImageView(withURL: ingredientName.strCategoryThumb, width: 50, height: 50)
+                                }
+                        }.onAppear {
+                            
+                         viewModel.loadCategories()
+                        }
+                    }
+                    
+                    TextEditor(text: $fullText)
+                        .onTapGesture {
+                            fullText=""
+                        }
+                        .onChange(of: fullText) { value in
+                            if(!fullText.isEmpty){
+                                viewModel.searchMealsByName(name: fullText)
+                            }else{
+                                viewModel.startObservingPeopleUpdates()
+                            }
+                                        }.frame(height:50)
+                    
+                        List(viewModel.drinks, id: \.strMeal) { person in
+                                                  NavigationLink(destination: MealDetailsView(viewModel: viewModel, meal: person)) {
+                                                      MealView(viewModel: viewModel, meal: person)
+                                                  }
+                                              }
+                    
+                      
+                       .navigationBarTitle(Text("Meal App"))
                        .onAppear {
                            viewModel.startObservingPeopleUpdates()
                        }
@@ -53,7 +76,7 @@ struct PeopleListView: View {
 }
 
 struct MealDetailsView: View {
-    var viewModel: PeopleInSpaceViewModel
+    var viewModel: MealViewModel
     var meal: Meal
     
     var body: some View {
@@ -64,22 +87,39 @@ struct MealDetailsView: View {
 
                 
                 Text("Ingredients")
-                HStack{
+               
+                        
+                        ForEach(meal.getIngredients(), id: \.self) { ingredientName in
+                            HStack{
+                                CheckboxField(
+                                                   id: "test",
+                                                   label: "",
+                                                   size: 14,
+                                                   textSize: 14,
+                                                   callback: checkboxSelected
+                                               )
+                                Text(ingredientName.measure)
+
+                                Text(ingredientName.name)
+
+                                ImageView(withURL: viewModel.getIngredientImageUrl(personName: ingredientName.name), width: 50, height: 50)
+                            }
                     
-                    ForEach(meal.getIngredients(), id: \.self) { ingredientName in
-                        ImageView(withURL: viewModel.getPersonImage(personName: ingredientName), width: 50, height: 50)
-                    }
-                }
+                        }
                 
                 Text("Category: "+meal.strCategory)
 
-                Text(meal.strInstructions ?? "").fixedSize().lineLimit(nil)
+                Text(meal.strInstructions ).padding(.horizontal,20)
                    
                 Spacer()
             }
             
         }
     }
+    
+    func checkboxSelected(id: String, isMarked: Bool) {
+            print("\(id) is marked: \(isMarked)")
+        }
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

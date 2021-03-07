@@ -1,10 +1,14 @@
-package de.jensklingenberg.newmyapplication.androidApp
+package de.jensklingenberg.newmyapplication.androidApp.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import de.jensklingenberg.newmyapplication.androidApp.maroon200
+import de.jensklingenberg.newmyapplication.androidApp.maroon500
+import de.jensklingenberg.newmyapplication.androidApp.maroon700
+import de.jensklingenberg.newmyapplication.androidApp.teal200
 
 
 private val DarkColorPalette = darkColors(
@@ -20,7 +24,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun PeopleInSpaceTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+fun MealAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
