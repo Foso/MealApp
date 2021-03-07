@@ -10,3 +10,6 @@ The iOS application is written in Swift. It uses Kotlin module as a library.
 Kotlin module is built into Objective-C framework by invoking Gradle
 from custom "Run Script" build phase, and this framework is imported into
 the Xcode project.
+
+### Building
+You need to use [Android Studio Canary](https://developer.android.com/studio/preview) version.  Have tested it on XCode v12.
