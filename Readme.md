@@ -20,5 +20,15 @@ Kotlin module is built into Objective-C framework by invoking Gradle
 from custom "Run Script" build phase, and this framework is imported into
 the Xcode project.
 
+## Android 
+The Android App is using Jetpack Compose for UI
+
+## Shared
+The apps get their data from the Meal Api (https://www.themealdb.com). The complete Network Layer and Json Serialization for both apps is done in this module. It is using Ktor Clients and Kotlinx Serialization
+
 ### Building
-You need to use [Android Studio Canary](https://developer.android.com/studio/preview) version.  Have tested it on XCode v12.
+#### Android
+You need to use [Android Studio Canary](https://developer.android.com/studio/preview) version. 
+
+#### iOS
+Have tested it on XCode v12.
