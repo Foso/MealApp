@@ -23,7 +23,7 @@ struct CheckboxField: View {
         color: Color = Color.black,
         textSize: Int = 14,
         callback: @escaping (String, Bool)->()
-        ) {
+    ) {
         self.id = id
         self.label = label
         self.size = size

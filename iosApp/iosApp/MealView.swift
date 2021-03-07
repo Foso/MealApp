@@ -12,7 +12,7 @@ import shared
 
 struct MealView : View {
     var viewModel: MealViewModel
-
+    
     var meal: Meal
     
     var body: some View {
@@ -20,9 +20,9 @@ struct MealView : View {
         
         HStack {
             ImageView(withURL: meal.strMealThumb, width: 64, height: 64)
-                   VStack(alignment: .leading) {
-                    Text(meal.strMeal )
-                   }
+            VStack(alignment: .leading) {
+                Text(meal.strMeal )
+            }
         }
     }
 }

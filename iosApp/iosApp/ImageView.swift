@@ -7,13 +7,13 @@ struct ImageView: View {
     @State var image:UIImage = UIImage()
     var width: CGFloat
     var height: CGFloat
-
+    
     init(withURL url:String, width: CGFloat, height: CGFloat) {
         imageLoader = ImageLoader(urlString:url)
         self.width = width
         self.height = height
     }
-
+    
     var body: some View {
         VStack {
             Image(uiImage: image)
@@ -33,7 +33,7 @@ class ImageLoader: ObservableObject {
             didChange.send(data)
         }
     }
-
+    
     init(urlString:String) {
         guard let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
