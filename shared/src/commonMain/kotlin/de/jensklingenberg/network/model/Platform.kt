@@ -1,4 +1,4 @@
-package de.jensklingenberg.newmyapplication.shared
+package de.jensklingenberg.network.model
 
 expect class Platform() {
     val platform: String

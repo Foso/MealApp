@@ -1,5 +1,4 @@
-package de.jensklingenberg.newmyapplication.shared
-
+package de.jensklingenberg.network.model
 
 import platform.UIKit.UIDevice
 

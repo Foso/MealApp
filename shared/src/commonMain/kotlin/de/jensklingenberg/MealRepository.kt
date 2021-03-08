@@ -1,17 +1,9 @@
-package de.jensklingenberg.newmyapplication.shared
+package de.jensklingenberg
 
 import de.jensklingenberg.mealdbapi.*
 import de.jensklingenberg.network.model.Meal
 import de.jensklingenberg.network.model.mapToMyMeal
 
-
-interface MealDataSource {
-    suspend fun getMeals(): List<Meal>
-    fun getIngredientImageUrl(name: String): String
-    suspend fun getCategories(): List<Category>
-    suspend fun getMealsByCategory(categoryName: String): List<Meal>
-    suspend fun getMealsByName(categoryName: String): List<Meal>
-}
 
 class MealRepository : MealDataSource {
 

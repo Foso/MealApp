@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.jensklingenberg.mealdbapi.Category
 import de.jensklingenberg.network.model.Meal
-import de.jensklingenberg.newmyapplication.shared.MealDataSource
+import de.jensklingenberg.MealDataSource
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

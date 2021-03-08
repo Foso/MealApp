@@ -75,7 +75,7 @@ struct MealDetailsView: View {
                 Text("Ingredients")
                 
                 
-                ForEach(meal.ingredients, id: \.self) { ingredientName in
+                ForEach(meal.ingredients, id: \.self) { ingredient in
                     HStack{
                         CheckboxField(
                             id: "test",
@@ -84,11 +84,11 @@ struct MealDetailsView: View {
                             textSize: 14,
                             callback: checkboxSelected
                         )
-                        Text(ingredientName.measure)
+                        Text(ingredient.measure)
                         
-                        Text(ingredientName.name)
+                        Text(ingredient.name)
                         
-                        ImageView(withURL: viewModel.getIngredientImageUrl(ingredientName: ingredientName.name), width: 50, height: 50)
+                        ImageView(withURL: viewModel.getIngredientImageUrl(ingredientName: ingredient.name), width: 50, height: 50)
                     }
                     
                 }
@@ -97,7 +97,6 @@ struct MealDetailsView: View {
                 
                 Text(meal.strInstructions ).padding(.horizontal,20)
                 
-                Spacer()
             }
             
         }

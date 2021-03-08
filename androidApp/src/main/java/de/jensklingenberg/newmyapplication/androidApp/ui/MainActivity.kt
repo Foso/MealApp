@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import de.jensklingenberg.newmyapplication.androidApp.ui.main.MainLayout
 import de.jensklingenberg.newmyapplication.androidApp.MealViewModel
-import de.jensklingenberg.newmyapplication.shared.MealRepository
+import de.jensklingenberg.MealRepository
 
 val mealViewModel = MealViewModel(MealRepository())
 
