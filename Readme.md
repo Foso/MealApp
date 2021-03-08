@@ -13,12 +13,16 @@ This is an example project that is using a shared Kotlin Multiplatform project b
 
 ## iOS
 
+Just import the iOS project [iosApp](iosApp/) inside Xcode.
+
 The iOS project compiles a Kotlin module to a framework (see [iosApp](iosApp/)). 
 
 The iOS application is written with SwiftUI. It uses Kotlin module as a library.
 Kotlin module is built into Objective-C framework by invoking Gradle
 from custom "Run Script" build phase, and this framework is imported into
 the Xcode project.
+
+
 
 ## Android 
 The Android App is using Jetpack Compose for UI
