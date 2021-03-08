@@ -12,6 +12,7 @@ This is an example project that is using a shared Kotlin Multiplatform project b
 |<img src="https://raw.githubusercontent.com/Foso/MealApp/master/docs/ios1.png" height="400" alt="Screenshot"/> | <img src="https://raw.githubusercontent.com/Foso/MealApp/master/docs/ios2.png" height="400" alt="Screenshot"/>  | <img src="https://raw.githubusercontent.com/Foso/MealApp/master/docs/ios3.png" height="400" alt="Screenshot"/> |
 
 ## iOS
+Have tested it on XCode v12.
 
 Just import the iOS project [iosApp](iosApp/) inside Xcode.
 
@@ -22,20 +23,12 @@ Kotlin module is built into Objective-C framework by invoking Gradle
 from custom "Run Script" build phase, and this framework is imported into
 the Xcode project.
 
-
-
 ## Android 
 The Android App is using Jetpack Compose for UI
+You need to use [Android Studio Canary](https://developer.android.com/studio/preview) version. 
 
 ## Shared
 The apps get their data from the Meal Api (https://www.themealdb.com). The complete Network Layer and Json Serialization for both apps is done in this module. It is using Ktor Clients and Kotlinx Serialization
-
-### Building
-#### Android
-You need to use [Android Studio Canary](https://developer.android.com/studio/preview) version. 
-
-#### iOS
-Have tested it on XCode v12.
 
 ### Find this project useful ? :heart:
 * Support it by clicking the :star: button on the upper right of this page. :v:
