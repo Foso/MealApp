@@ -12,8 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import de.jensklingenberg.newmyapplication.androidApp.ui.mealViewModel
-import de.jensklingenberg.newmyapplication.shared.models.getIngredients
-import de.jensklingenberg.newmyapplication.shared.models.tags
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Preview
@@ -75,15 +73,15 @@ fun MealDetailsView(mealName: String, popBack: () -> Unit) {
 
                 Text("Tags:")
 
-                it.tags().forEach {
+                it.strTags.forEach {
                     Tag(it)
                 }
 
-                if (it.getIngredients().isNotEmpty()) {
+                if (it.ingredients.isNotEmpty()) {
                     Text("Ingredients:")
                 }
 
-                it.getIngredients().forEach { ingredient ->
+                it.ingredients.forEach { ingredient ->
                     Row {
                         Checkbox(checked = false, onCheckedChange = { /*TODO*/ })
                         Text(ingredient.name)

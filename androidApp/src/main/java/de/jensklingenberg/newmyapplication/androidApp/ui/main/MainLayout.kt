@@ -18,14 +18,14 @@ fun MainLayout() {
         NavHost(navController, startDestination = Screen.MealListScreen.title) {
             composable(Screen.MealListScreen.title) {
                 MealList(
-                    personSelected = {
+                    mealSelected = {
                         navController.navigate(Screen.MealDetailsDetails.title + "/${it.strMeal}")
                     }
                 )
             }
-            composable(Screen.MealDetailsDetails.title + "/{person}") { backStackEntry ->
+            composable(Screen.MealDetailsDetails.title + "/{meal}") { backStackEntry ->
                 MealDetailsView(
-                    backStackEntry.arguments?.get("person") as String,
+                    backStackEntry.arguments?.get("meal") as String,
                     popBack = { navController.popBackStack() })
             }
         }

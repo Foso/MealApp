@@ -41,8 +41,8 @@ final class MealViewModel: ObservableObject {
         }
     }
     
-    func getIngredientImageUrl(personName: String) -> String {
-        return repository.getIngredientImageUrl(name: personName)
+    func getIngredientImageUrl(ingredientName: String) -> String {
+        return repository.getIngredientImageUrl(name: ingredientName)
     }
     
 }

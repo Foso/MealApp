@@ -3,9 +3,9 @@ package de.jensklingenberg.newmyapplication.androidApp
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import de.jensklingenberg.mealdbapi.Category
+import de.jensklingenberg.network.model.Meal
 import de.jensklingenberg.newmyapplication.shared.MealDataSource
-import de.jensklingenberg.newmyapplication.shared.models.Category
-import de.jensklingenberg.newmyapplication.shared.models.Meal
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -19,7 +19,7 @@ class MealViewModel(private val mealDataSource: MealDataSource) : ViewModel() {
 
     fun getMeals() {
         GlobalScope.launch {
-            mealsState.value=(mealDataSource.getMeals())
+            mealsState.value = (mealDataSource.getMeals())
         }
     }
 
@@ -29,19 +29,20 @@ class MealViewModel(private val mealDataSource: MealDataSource) : ViewModel() {
 
     fun searchByCategory(name: String) {
         GlobalScope.launch {
-            mealsState.value=(mealDataSource.getMealsByCategory(name))
+            mealsState.value = (mealDataSource.getMealsByCategory(name))
         }
     }
 
     fun searchByName(name: String) {
         GlobalScope.launch {
-            mealsState.value=(mealDataSource.getMealsByName(name))
+            mealsState.value = (mealDataSource.getMealsByName(name))
         }
     }
 
     fun getMealImage(personName: String): String = getMeal(personName)?.strMealThumb ?: ""
 
-    fun getMeal(personName: String): Meal? = mealsState.value.find { it.strMeal == personName }
+    fun getMeal(personName: String): Meal? =
+        mealsState.value.find { it.strMeal == personName }
 
     fun getIngredientImage(personName: String): String =
         mealDataSource.getIngredientImageUrl(personName)

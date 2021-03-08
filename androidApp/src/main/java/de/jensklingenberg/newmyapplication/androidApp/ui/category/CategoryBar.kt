@@ -6,7 +6,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import de.jensklingenberg.newmyapplication.shared.models.Category
+import de.jensklingenberg.mealdbapi.Category
 
 @Composable
 fun CategoryBar(categories: List<Category>, onClick: (Category) -> Unit = {}) {
@@ -20,5 +20,5 @@ fun CategoryBar(categories: List<Category>, onClick: (Category) -> Unit = {}) {
 @Preview(showSystemUi = false)
 @Composable
 fun CategoryViewPreview() {
-    CategoryView(person = Category("1", "Hallo", "", "Food"))
+    CategoryView(category = Category("1", "Hallo", "", "Food"))
 }

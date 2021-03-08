@@ -1,7 +1,5 @@
-package de.jensklingenberg.newmyapplication.shared.ktor
+package de.jensklingenberg.mealdbapi
 
-import de.jensklingenberg.newmyapplication.shared.models.CategoryResult
-import de.jensklingenberg.newmyapplication.shared.models.MealResult
 import io.ktor.client.*
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.*

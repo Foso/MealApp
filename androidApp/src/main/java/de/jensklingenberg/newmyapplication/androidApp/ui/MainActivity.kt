@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
 
 
 sealed class Screen(val title: String) {
-    object MealListScreen : Screen("PersonList")
-    object MealDetailsDetails : Screen("PersonDetails")
+    object MealListScreen : Screen("MealList")
+    object MealDetailsDetails : Screen("MealDetails")
 }
 
 
