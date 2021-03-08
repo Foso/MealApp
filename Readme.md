@@ -1,6 +1,6 @@
 # MealApp
 
-This is an example project that is using a shared Kotlin Multiplatform project between an Android and an iOS project. The Android App is using Jetpack Compose for UI and the iOS App is using SwiftUI. 
+This is an example project that is using a shared Kotlin Multiplatform project between an Android and an iOS project. The Android App is using Jetpack Compose for UI and the iOS App is using SwiftUI. Please be aware that i just started learning Compose and SwiftUI, so there a lot of things to improve.
 
 | Android Overview | Details1 |  Details2 |
 | ------------------ | --------------------------- | ------------------ |
