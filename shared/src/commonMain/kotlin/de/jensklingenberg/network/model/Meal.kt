@@ -15,7 +15,7 @@ data class Meal(
     var strInstructions: String=""
 )
 
-fun ApiMeal.mapToMyMeal(): Meal {
+fun ApiMeal.mapToMeal(): Meal {
     val ingredients = this.getIngredients()
     val tags = this.tags()
     return Meal(
