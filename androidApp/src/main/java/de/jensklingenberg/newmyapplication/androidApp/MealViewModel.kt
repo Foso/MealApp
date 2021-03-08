@@ -39,12 +39,12 @@ class MealViewModel(private val mealDataSource: MealDataSource) : ViewModel() {
         }
     }
 
-    fun getMealImage(personName: String): String = getMeal(personName)?.strMealThumb ?: ""
+    fun getMealImage(mealName: String): String = getMeal(mealName)?.strMealThumb ?: ""
 
-    fun getMeal(personName: String): Meal? =
-        mealsState.value.find { it.strMeal == personName }
+    fun getMeal(mealName: String): Meal? =
+        mealsState.value.find { it.strMeal == mealName }
 
-    fun getIngredientImage(personName: String): String =
-        mealDataSource.getIngredientImageUrl(personName)
+    fun getIngredientImage(ingredientName: String): String =
+        mealDataSource.getIngredientImageUrl(ingredientName)
 
 }

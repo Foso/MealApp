@@ -11,8 +11,8 @@ import de.jensklingenberg.mealdbapi.Category
 @Composable
 fun CategoryBar(categories: List<Category>, onClick: (Category) -> Unit = {}) {
     LazyRow {
-        items(categories) { person ->
-            CategoryView(person, modifier = Modifier.clickable { onClick(person) })
+        items(categories) { category ->
+            CategoryView(category, modifier = Modifier.clickable { onClick(category) })
         }
     }
 }

@@ -6,16 +6,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.text.input.TextFieldValue
 import de.jensklingenberg.newmyapplication.androidApp.ui.category.CategoryBar
 import de.jensklingenberg.newmyapplication.androidApp.ui.mealViewModel
 import de.jensklingenberg.network.model.Meal
 
 @Composable
 fun MealList(mealSelected: (meal: Meal) -> Unit) {
-    val peopleState = mealViewModel.mealsState
+    val mealsState = mealViewModel.mealsState
     val categoryState = mealViewModel.categories.collectAsState()
-    val searchInput = remember { mutableStateOf(TextFieldValue()) }
 
     SideEffect {
         mealViewModel.getMeals()
@@ -37,9 +35,9 @@ fun MealList(mealSelected: (meal: Meal) -> Unit) {
             }
 
             LazyColumn {
-                items(peopleState.value) { person ->
-                    val mealImageUrl = mealViewModel.getMealImage(person.strMeal)
-                    MealView(mealImageUrl, person, mealSelected)
+                items(mealsState.value) { meal ->
+                    val mealImageUrl = mealViewModel.getMealImage(meal.strMeal)
+                    MealView(mealImageUrl, meal, mealSelected)
                 }
             }
         }
