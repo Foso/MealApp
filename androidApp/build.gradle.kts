@@ -27,6 +27,8 @@ dependencies {
     implementation(Compose.uiGraphics)
     implementation(Compose.uiTooling)
     implementation(Compose.foundationLayout)
+    implementation(Compose.foundation)
+
     implementation(Compose.material)
     implementation(Compose.runtimeLiveData)
     implementation(Compose.navigation)

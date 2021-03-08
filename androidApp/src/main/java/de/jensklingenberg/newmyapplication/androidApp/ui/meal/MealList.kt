@@ -28,14 +28,14 @@ fun MealList(mealSelected: (meal: Meal) -> Unit) {
             CategoryBar(categoryState.value, onClick = {
                 mealViewModel.searchByCategory(it.strCategory)
             })
-            TextField(value = searchInput.value, onValueChange = {
-                searchInput.value=it
-                if(it.text.isNotBlank()){
-                    mealViewModel.searchByName(it.text)
+            SearchInput(){
+                if(it.isNotBlank()){
+                    mealViewModel.searchByName(it)
                 }else{
-                    mealViewModel.getMeals()
-                }
-            })
+                mealViewModel.getMeals()
+            }
+            }
+
             LazyColumn {
                 items(peopleState.value) { person ->
                     val mealImageUrl = mealViewModel.getMealImage(person.strMeal)
