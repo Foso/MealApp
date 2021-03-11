@@ -3,9 +3,9 @@ object Versions {
     val target_sdk = 30
     val compile_sdk = 30
 
-    val kotlin = "1.4.30"
+    val kotlin = "1.4.31"
     val android_gradle_plugin = "4.0.1"
-    const val compose = "1.0.0-beta01"
+    const val compose = "1.0.0-beta02"
 
     val buildToolsVersion = "30.0.2"
     val coroutines = "1.4.2-native-mt"
