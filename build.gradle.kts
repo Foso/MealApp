@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.0-alpha09")
+        classpath("com.android.tools.build:gradle:7.0.0-alpha10")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
 
         classpath(kotlin("gradle-plugin", Versions.kotlin))

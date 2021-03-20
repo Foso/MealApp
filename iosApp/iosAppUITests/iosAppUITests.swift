@@ -3,7 +3,6 @@ import shared
 
 
 
-
 class IosTest : TestEnvironment{
     func assertNodeDisplayed(text: String) {
         XCUIApplication().tables.buttons[text]
@@ -54,10 +53,9 @@ class appNameUITests: XCTestCase {
 
     func whenUserClicksOnListItemOpenDetailPage() {
 
-        let test = IosTest()
+        let testEnvironment = IosTest()
          
-        MyTest(testEnvironment: test).whenUserClicksOnListItem_OpenDetailPage()
-               
+        OverviewTest(testEnvironment:testEnvironment).whenUserClicksOnListItem_OpenDetailPage()
        
 
         // Use recording to get started writing UI tests.
@@ -67,9 +65,10 @@ class appNameUITests: XCTestCase {
   
 
     func testLaunchPerformance() {
-        let test = IosTest()
+
+    
+        let testEnvironment = IosTest()
          
-        MyTest(testEnvironment: test).whenUserClicksOnListItem_OpenDetailPage()
-       
+        OverviewTest(testEnvironment:testEnvironment).whenUserClicksOnListItem_OpenDetailPage()
     }
 }

@@ -35,9 +35,32 @@ dependencies {
     implementation(Compose.accompanist)
     implementation(Koin.compose)
 
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:3.0.2")
+
+    androidTestImplementation ("androidx.test:runner:1.3.0")
+    androidTestImplementation ("androidx.test.espresso:espresso-intents:3.3.0")
+
+    androidTestImplementation ("androidx.test:core:1.3.0")
+
+    androidTestImplementation ("androidx.test.ext:junit:1.1.2")
+
+    androidTestImplementation ("androidx.test:rules:1.3.0")
+    androidTestImplementation ("org.mockito:mockito-core:2.28.2")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta01")
+    androidTestImplementation("androidx.compose.ui:ui-test:1.0.0-beta02")
+
+    androidTestImplementation("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation("com.schibsted.spain:barista:3.9.0")
 }
 
 android {
+    packagingOptions {
+        exclude ("META-INF/DEPENDENCIES.TXT")
+        exclude ("META-INF/LICENSE.TXT")
+        exclude ("META-INF/AL2.0")
+        pickFirst ("META-INF/LGPL2.1")
+
+    }
     compileSdkVersion(30)
     defaultConfig {
         applicationId = "de.jensklingenberg.newmyapplication.androidApp"
@@ -45,6 +68,7 @@ android {
         targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"
+        testInstrumentationRunner = "android.TestRunner"
     }
     buildTypes {
         getByName("release") {
@@ -73,5 +97,8 @@ android {
         lintOptions {
             this.isAbortOnError= false
         }
+
     }
+
+
 }

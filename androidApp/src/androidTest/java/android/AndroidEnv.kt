@@ -10,7 +10,7 @@ import de.jensklingenberg.newmyapplication.androidApp.ui.main.MainLayout
 import de.jensklingenberg.test.TestEnvironment
 import org.junit.Assert
 
-class ComposeAndroidEnv(val composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity>) : TestEnvironment {
+class ComposeAndroidEnv(private val composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity>) : TestEnvironment {
 
     override fun launchApp() {
         composeTestRule.setContent {
