@@ -13,12 +13,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import de.jensklingenberg.newmyapplication.androidApp.ui.mealViewModel
-import dev.chrisbanes.accompanist.coil.CoilImage
+
 
 @Preview
 @Composable
@@ -70,8 +73,8 @@ fun MealDetailsView(mealName: String, popBack: () -> Unit) {
 
                 val imageUrl = mealViewModel.getMealImage(meal.strMeal)
                 if (imageUrl.isNotEmpty()) {
-                    CoilImage(
-                        data = imageUrl,
+                    AsyncImage(
+                        model = ImageRequest.Builder(LocalContext.current).data(imageUrl).build(),
                         modifier = Modifier.size(240.dp),
                         contentDescription = meal.strMeal
                     )
@@ -91,8 +94,8 @@ fun MealDetailsView(mealName: String, popBack: () -> Unit) {
                     Row() {
                         Checkbox(checked = false, onCheckedChange = { /*TODO*/ })
                         Text(ingredient.name)
-                        CoilImage(
-                            data = mealViewModel.getIngredientImage(ingredient.name),
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current).data(mealViewModel.getIngredientImage(ingredient.name)).build(),
                             modifier = Modifier.size(50.dp),
                             contentDescription = meal.strMeal
                         )

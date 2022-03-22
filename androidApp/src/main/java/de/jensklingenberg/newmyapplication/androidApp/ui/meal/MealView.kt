@@ -6,10 +6,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import dev.chrisbanes.accompanist.coil.CoilImage
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+
 
 @Composable
 fun MealView(mealImageUrl: String, meal: de.jensklingenberg.network.model.Meal, mealSelected: (meal: de.jensklingenberg.network.model.Meal) -> Unit) {
@@ -21,8 +24,8 @@ fun MealView(mealImageUrl: String, meal: de.jensklingenberg.network.model.Meal, 
     ) {
 
         if (mealImageUrl.isNotEmpty()) {
-            CoilImage(
-                data = mealImageUrl,
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current).data(mealImageUrl).build(),
                 modifier = Modifier.size(60.dp),
                 contentDescription = meal.strMeal
             )

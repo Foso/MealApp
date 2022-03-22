@@ -3,7 +3,7 @@ package de.jensklingenberg.newmyapplication.androidApp.ui.main
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigate
+
 import androidx.navigation.compose.rememberNavController
 import de.jensklingenberg.newmyapplication.androidApp.ui.MealAppTheme
 import de.jensklingenberg.newmyapplication.androidApp.ui.meal.MealList

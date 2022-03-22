@@ -3,19 +3,19 @@ object Versions {
     val target_sdk = 30
     val compile_sdk = 30
 
-    val kotlin = "1.4.31"
+    val kotlin = "1.6.10"
     val android_gradle_plugin = "4.0.1"
-    const val compose = "1.0.0-beta02"
+    const val compose = "1.1.0"
 
     val buildToolsVersion = "30.0.2"
-    val coroutines = "1.4.2-native-mt"
+    val coroutines = "1.6.0"
     const val koin = "3.0.1-beta-1"
 
-    val ktor = "1.5.0"
+    val ktor = "1.6.8"
     val junit = "4.13.1"
     val material = "1.2.1"
-    val serialization = "1.0.1"
-    const val nav_compose = "1.0.0-alpha08"
+    val serialization = "1.3.2"
+    const val nav_compose = "2.4.1"
     const val accompanist = "0.6.0"
 
     object AndroidX {
@@ -91,7 +91,7 @@ object Compose {
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
     const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
-    const val accompanist= "dev.chrisbanes.accompanist:accompanist-coil:${Versions.accompanist}"
+    const val accompanist= "io.coil-kt:coil-compose:2.0.0-rc02"
 }
 
 object Koin {

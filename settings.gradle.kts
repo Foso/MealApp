@@ -7,10 +7,9 @@ pluginManagement {
     }
     
 }
-rootProject.name = "NewCoktailapp"
+rootProject.name = "MealApp"
 
 
 include(":androidApp")
 include(":shared")
 
-enableFeaturePreview("GRADLE_METADATA")
